@@ -23,7 +23,7 @@ fmtname(char *path)
 }
 
 void
-ls(char *path)
+find(char *path, char* name)
 {
   char buf[512], *p;
   int fd;
@@ -43,8 +43,7 @@ ls(char *path)
 
   switch(st.type){
   case T_FILE:
-    // printf("1");
-    printf("%s %d %d %l\n", fmtname(path), st.type, st.ino, st.size);
+    // printf("%s %d %d %l\n", fmtname(path), st.type, st.ino, st.size);
     break;
 
   case T_DIR:
@@ -52,8 +51,12 @@ ls(char *path)
       printf("ls: path too long\n");
       break;
     }
+
+    //copy
     strcpy(buf, path);
+
     p = buf+strlen(buf);
+
     *p++ = '/';
     while(read(fd, &de, sizeof(de)) == sizeof(de)){
       if(de.inum == 0)
@@ -64,8 +67,18 @@ ls(char *path)
         printf("ls: cannot stat %s\n", buf);
         continue;
       }
-      // printf("2");
-      printf("%s %d %d %d\n", fmtname(buf), st.type, st.ino, st.size);
+
+    //   printf("%s %d %d %d\n", fmtname(buf), st.type, st.ino, st.size);
+      if(de.name[0] == '.' && strlen(de.name) == 1)
+        continue;
+      if(de.name[0] == '.' && de.name[1] == '.' && strlen(de.name) == 2)
+        continue;
+      if(strcmp(de.name, name) == 0){
+        printf("%s\n",buf);
+      }
+      find(buf, name);
+
+
     }
     break;
   }
@@ -75,13 +88,13 @@ ls(char *path)
 int
 main(int argc, char *argv[])
 {
-  int i;
-
-  if(argc < 2){
-    ls(".");
+  if(argc != 3){
+    printf("Wrong! you have to do something like this:\nfind . a\n");
     exit();
   }
-  for(i=1; i<argc; i++)
-    ls(argv[i]);
+//   for(i=1; i<argc; i++)
+//     ls(argv[i]);
+  find(argv[1],argv[2]);
+
   exit();
 }
