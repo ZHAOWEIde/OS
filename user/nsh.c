@@ -28,12 +28,11 @@ int main(void)
   exit(0);
 }
 
-int
-getcmd(char *buf, int nbuf)
+int getcmd(char *buf, int nbuf) //读取指令
 {
   fprintf(2, "@ ");
-  memset(buf, 0, nbuf);
-  gets(buf, nbuf);
+  memset(buf, 0, nbuf); //初始话buf全为0
+  gets(buf, nbuf);      //从缓冲区读
   if(buf[0] == 0) // EOF
     return -1;
   return 0;
