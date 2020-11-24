@@ -82,7 +82,19 @@ bget(uint dev, uint blockno)
     for(b = bcache.hashbucket[i].next; b != &bcache.hashbucket[i]; b = b->next){
       if(b->dev == dev && b->blockno == blockno){
         b->refcnt++;
+        
+        //挪动b到自己的素数桶
+        //断开
+        b->next->prev = b->prev;
+        b->prev->next = b->next;
         release(&bcache.lock[i]);
+
+        //添加头插法
+        acquire(&bcache.lock[block_num]);
+        bcache.hashbucket[block_num].next->prev = b;
+        b->next = bcache.hashbucket[block_num].next;
+        bcache.hashbucket[block_num].next = b;
+        release(&bcache.lock[block_num]);//解锁
         acquiresleep(&b->lock);
         return b;
       }
@@ -92,7 +104,7 @@ bget(uint dev, uint blockno)
   
 
   acquire(&bcache.lock[block_num]);//重新获得锁
-  // Not cached; recycle an unused buffer.有限自己的素数桶
+  // Not cached; recycle an unused buffer.优先自己的素数桶
   for(b = bcache.hashbucket[block_num].prev; b != &bcache.hashbucket[block_num]; b = b->prev){
     if(b->refcnt == 0) {
       b->dev = dev;
