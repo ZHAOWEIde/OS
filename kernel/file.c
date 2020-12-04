@@ -16,7 +16,7 @@
 struct devsw devsw[NDEV];
 struct {
   struct spinlock lock;
-  struct file file[NFILE];
+  // struct file file[NFILE];
 } ftable;
 
 void
@@ -26,18 +26,40 @@ fileinit(void)
 }
 
 // Allocate a file structure.
-struct file*
-filealloc(void)
-{
-  struct file *f;
-
-  acquire(&ftable.lock);
+// 让我使用bd_malloc？？
+  //f 是什么
+  // f是一个文件指针，
+  // f->ref 保存是否被使用
+  // 欧克 理解了 下面一段代码就是循环查找file 找到一个空的文件描述符并返回，无则返回0
+  /*
   for(f = ftable.file; f < ftable.file + NFILE; f++){
     if(f->ref == 0){
       f->ref = 1;
       release(&ftable.lock);
       return f;
     }
+  }*/
+
+  //怎么用bd_malloc
+  //需要传进去什么 一个unit
+  //一个文件描述符大小的字节数
+
+  //返回的是什么  一个文件描述符的内存地址
+struct file*
+filealloc(void)
+{
+  struct file *f; //文件描述符
+
+  acquire(&ftable.lock);
+
+  uint num = sizeof(struct file);
+  f = bd_malloc(num);
+  
+
+  if(f){
+    f -> ref = 1; //第一次分配空间，ref置1
+    release(&ftable.lock);
+    return f;
   }
   release(&ftable.lock);
   return 0;
@@ -59,27 +81,56 @@ filedup(struct file *f)
 void
 fileclose(struct file *f)
 {
-  struct file ff;
+  // struct file ff;
 
+  //ff是干什么的
+  //保存将要释放的文件描述符
+  //为什么一开始需要ff？？？
+
+  /*
+    因为当该文件描述符需要释放，但是释放操作可能比较耗时，
+    用 f 去操作后续操作会很消耗时间，所以重新复刻了一个 ff去操作
+  */
+
+  //后来为什么不需要ff？？
+
+  /*
+    malloc 分配文件描述符没有限制，不着急释放所以可以操作完了再释放，
+    即使新建了一个ff，也还是占用了内存，换汤不换药。
+  */
+ 
   acquire(&ftable.lock);
+
   if(f->ref < 1)
     panic("fileclose");
   if(--f->ref > 0){
     release(&ftable.lock);
     return;
   }
-  ff = *f;
-  f->ref = 0;
-  f->type = FD_NONE;
+  //f->ref = 0;
+  //放在这里对吗？
   release(&ftable.lock);
+  // ff = *f;
+  
 
-  if(ff.type == FD_PIPE){
-    pipeclose(ff.pipe, ff.writable);
-  } else if(ff.type == FD_INODE || ff.type == FD_DEVICE){
-    begin_op(ff.ip->dev);
-    iput(ff.ip);
-    end_op(ff.ip->dev);
+  if(f->type == FD_PIPE){
+    pipeclose(f->pipe, f->writable);
+  } else if(f->type == FD_INODE || f->type == FD_DEVICE){
+    begin_op(f->ip->dev);
+    iput(f->ip);
+    end_op(f->ip->dev);
   }
+  f->type = FD_NONE;
+  bd_free(f);
+  
+  // 不同的文件所对应的操作 管道、设备
+  // if(ff.type == FD_PIPE){
+  //   pipeclose(ff.pipe, ff.writable);
+  // } else if(ff.type == FD_INODE || ff.type == FD_DEVICE){
+  //   begin_op(ff.ip->dev);
+  //   iput(ff.ip);
+  //   end_op(ff.ip->dev);
+  // }
 }
 
 // Get metadata about file f.
