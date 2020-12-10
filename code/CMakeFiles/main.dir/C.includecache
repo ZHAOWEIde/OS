@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/180110507/Lab5/code/disk.h
+
+/home/180110507/Lab5/code/naiveExt2.c
+naiveExt2.h
+/home/180110507/Lab5/code/naiveExt2.h
+string.h
+-
+
+/home/180110507/Lab5/code/naiveExt2.h
+disk.h
+/home/180110507/Lab5/code/disk.h
+stdio.h
+-
+unistd.h
+-
+netinet/in.h
+-
+

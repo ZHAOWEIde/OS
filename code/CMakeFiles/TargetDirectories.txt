@@ -1,0 +1,3 @@
+/home/180110507/Lab5/code/CMakeFiles/rebuild_cache.dir
+/home/180110507/Lab5/code/CMakeFiles/main.dir
+/home/180110507/Lab5/code/CMakeFiles/edit_cache.dir
