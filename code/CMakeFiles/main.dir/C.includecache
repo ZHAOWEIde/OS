@@ -19,6 +19,8 @@ disk.h
 /home/180110507/Lab5/code/disk.h
 stdio.h
 -
+stdlib.h
+-
 unistd.h
 -
 netinet/in.h
