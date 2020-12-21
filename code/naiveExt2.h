@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <netinet/in.h>
-#define MAGICNUM 0x2077
+#define MAGICNUM 0x2078
 
 #define BLOCKNUM 126*32
 #define INODENUM 32*32
@@ -20,6 +20,13 @@
 #define ONLY_INODE          1
 #define ONLY_DATA           2
 #define SIZE_DIR_ITEM       128
+
+#define MAXARGS     4
+#define O_RDONLY  0x000
+#define O_WRONLY  0x001
+#define O_RDWR    0x002
+#define O_CREATE  0x200
+
 //  gcc -g disk.h disk.c naiveExt2.c naiveExt2.h -o main
 
 
@@ -124,7 +131,10 @@ void find(char *charName,char *filePath);
 
 //工作环境
 int work();
-
+void getargs(char *cmd, char* argv[],int *argc);
+void runcmd(char* argv[],int argc);
+void usePipe(char *argv[],int argc,int index);
+int getcmd(char *buf, int nbuf);
 
 ///
 /// 第一个block存放了super_block  512B - 164B = 348B
