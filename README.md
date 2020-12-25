@@ -15,7 +15,8 @@
 
 +   Ext2文件系统的构成
     -   一个物理磁盘可以划分为多个磁盘分区，每个磁盘分区可以从逻辑上看成是从0开始编号的大量扇区，各自可以格式化程不同类型的文件系统（如Ext2、NTFS等）。如果格式化成Ext2文件系统，则其内部按照Ext2的规范，将磁盘盘块组织成超级块、组描述符和位图、索引节点、目录等管理数据，放在分区前端称为元数据区，剩余空间用于保存文件数据。
-#### 实现内从介绍
+    
+#### naiveExt2实现内容介绍
 1.  实现青春版Ext2文件系统
     -创建文件/文件夹（数据块可预分配）；
     -读取文件夹内容；
@@ -30,19 +31,9 @@
     -shutdown - 关闭系统
 
 
-#### 软件架构
-软件架构说明
-
-
-#### 安装教程
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
 #### 使用说明
 
-1.  在code目录下使用以下编译指令
+1.  在code目录下使用命令行编译指令
     gcc -g disk.h disk.c naiveExt2.c naiveExt2.h -o main
 2.  在code中运行./main
 3.	按说明运行即可，注意未完成相对路径，所以输入文件时，请输入绝对路径  
@@ -50,18 +41,5 @@
 
 
 #### 参与贡献
+    个人
 
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
-
-
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
