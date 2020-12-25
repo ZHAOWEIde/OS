@@ -1,9 +1,19 @@
-# os_lab
+# OS_Lab5 仿Ext2文件管理系统(Linux / C)
 
 #### 介绍
-{**以下是 Gitee 平台说明，您可以替换此简介**
-Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
-无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+a)	实现青春版Ext2文件系统
+创建文件/文件夹（数据块可预分配）；
+读取文件夹内容；
+复制文件；
+关闭系统；
+系统关闭后，再次进入该系统还能还原出上次关闭时系统内的文件部署。
+b)	为实现的文件系统实现简单的 shell 以及 shell 命令以展示实现的功能
+ls - 展示读取文件夹内容
+mkdir - 创建文件夹
+touch - 创建文件
+cp - 复制文件
+shutdown - 关闭系统
+
 
 #### 软件架构
 软件架构说明
@@ -21,7 +31,7 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
     gcc -g disk.h disk.c naiveExt2.c naiveExt2.h -o main
 2.  在code中运行./main
 2.	按说明运行即可，注意未完成相对路径，所以输入文件时，请输入绝对路径
-    
+    ![naiveExt2菜单说明](https://github.com/ZHAOWEIde/OS/blob/master/image/show.png "菜单")
 
 
 #### 参与贡献
