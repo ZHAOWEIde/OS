@@ -3,8 +3,21 @@
 #### 说明
 +   本实验基于哈尔滨工业大学（深圳）计算机操作系统课程指导完成。
 +   [-操作系统课程指导-](https://hitsz-lab.gitee.io/os_lab/lab5/part1/)
++   代码位于code文件夹、code内代码含义
+    -   disk.h / disk.c：模拟一个 4M 的磁盘，一次以512B读写；
+    -   naiveExt2.h    ：文件管理系统头文件；
+    -   naiveExt2.c    : 函数实现；
+    
+#### 使用说明
+
+1.  在code目录下使用命令行编译指令
+    gcc -g disk.h disk.c naiveExt2.c naiveExt2.h -o main
+2.  在code中运行./main
+3.	按说明运行即可，注意未完成相对路径，所以输入文件时，请输入绝对路径  
+    ![naiveExt2菜单说明](https://github.com/ZHAOWEIde/OS/blob/master/image/show.png "菜单")
     
 #### Ext2介绍
+
 +   文件系统是操作系统用于明确存储设备（磁盘）或分区上的文件的方法和数据结构；即在存储设备上组织文件的方法。简单地说文件就是在磁盘上组织文件的方法。
 +   文件系统主要作用：
     -   管理和调度文件的存储空间，提供文件的逻辑结构、物理结构和存储方法;
@@ -17,6 +30,7 @@
     -   一个物理磁盘可以划分为多个磁盘分区，每个磁盘分区可以从逻辑上看成是从0开始编号的大量扇区，各自可以格式化程不同类型的文件系统（如Ext2、NTFS等）。如果格式化成Ext2文件系统，则其内部按照Ext2的规范，将磁盘盘块组织成超级块、组描述符和位图、索引节点、目录等管理数据，放在分区前端称为元数据区，剩余空间用于保存文件数据。
     
 #### naiveExt2实现内容介绍
+
 1.  实现青春版Ext2文件系统
     -创建文件/文件夹（数据块可预分配）；
     -读取文件夹内容；
@@ -31,6 +45,7 @@
     -shutdown - 关闭系统
     
 #### naiveExt2内容展示
+
 1.  基础功能：  
     ![基础功能](https://github.com/ZHAOWEIde/OS/blob/master/image/basic.png)
 
@@ -39,16 +54,14 @@
     
 3.  读写文件功能：  
     ![echo/cat](https://github.com/ZHAOWEIde/OS/blob/master/image/echo%26cat.png)
+    
+#### 可扩展功能
 
-#### 使用说明
-
-1.  在code目录下使用命令行编译指令
-    gcc -g disk.h disk.c naiveExt2.c naiveExt2.h -o main
-2.  在code中运行./main
-3.	按说明运行即可，注意未完成相对路径，所以输入文件时，请输入绝对路径  
-    ![naiveExt2菜单说明](https://github.com/ZHAOWEIde/OS/blob/master/image/show.png "菜单")
+1.  cd功能;
+2.  fork()多进程;
 
 
-#### 参与贡献
-    个人
+
+
+
 
