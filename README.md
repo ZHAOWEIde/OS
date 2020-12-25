@@ -1,8 +1,8 @@
 # OS_Lab5 仿Ext2文件管理系统(Linux / C)
 
 #### 说明
-    本实验基于哈尔滨工业大学（深圳）计算机操作系统课程指导完成。
-    [课程指导](https://hitsz-lab.gitee.io/os_lab/lab5/part1/)
++   本实验基于哈尔滨工业大学（深圳）计算机操作系统课程指导完成。
++   [-操作系统课程指导-](https://hitsz-lab.gitee.io/os_lab/lab5/part1/)
     
 #### Ext2介绍
 +   文件系统是操作系统用于明确存储设备（磁盘）或分区上的文件的方法和数据结构；即在存储设备上组织文件的方法。简单地说文件就是在磁盘上组织文件的方法。
@@ -29,7 +29,16 @@
     -touch - 创建文件
     -cp - 复制文件
     -shutdown - 关闭系统
+    
+#### naiveExt2内容展示
+1.  基础功能：
+    ![基础功能](https://github.com/ZHAOWEIde/OS/blob/master/image/basic.png)
 
+2.  创建文件功能：
+    ![touch创建文件](https://github.com/ZHAOWEIde/OS/blob/master/image/touch.png)
+    
+3.  读写文件功能：
+    ![echo/cat](https://github.com/ZHAOWEIde/OS/blob/master/image/echo%26cat.png)
 
 #### 使用说明
 
