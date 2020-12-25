@@ -17,9 +17,12 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
 
 #### 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  在code目录下使用以下编译指令
+    gcc -g disk.h disk.c naiveExt2.c naiveExt2.h -o main
+2.  在code中运行./main
+2.	按说明运行即可，注意未完成相对路径，所以输入文件时，请输入绝对路径
+    
+
 
 #### 参与贡献
 
