@@ -31,7 +31,7 @@ shutdown - 关闭系统
     gcc -g disk.h disk.c naiveExt2.c naiveExt2.h -o main
 2.  在code中运行./main
 3.	按说明运行即可，注意未完成相对路径，所以输入文件时，请输入绝对路径
-   ![naiveExt2菜单说明](https://github.com/ZHAOWEIde/OS/blob/master/image/show.png "菜单")
+    - ![naiveExt2菜单说明](https://github.com/ZHAOWEIde/OS/blob/master/image/show.png "菜单")
 
 
 #### 参与贡献
