@@ -31,13 +31,13 @@
     -shutdown - 关闭系统
     
 #### naiveExt2内容展示
-1.  基础功能：
+1.  基础功能：  
     ![基础功能](https://github.com/ZHAOWEIde/OS/blob/master/image/basic.png)
 
-2.  创建文件功能：
+2.  创建文件功能：  
     ![touch创建文件](https://github.com/ZHAOWEIde/OS/blob/master/image/touch.png)
     
-3.  读写文件功能：
+3.  读写文件功能：  
     ![echo/cat](https://github.com/ZHAOWEIde/OS/blob/master/image/echo%26cat.png)
 
 #### 使用说明
